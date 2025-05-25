@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Экскурсионные туры по Казани</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css для анимации текста -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4CAF50; /* Зеленый - цвет ислама и природы */
+            --secondary-color: #F0F4C3; /* Светло-желтый - цвет песка и восточного колорита */
+            --accent-color: #D84315; /* Кирпичный - цвет древних стен */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 5rem 0;
+            color: white;
+            margin-bottom: 3rem;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .animate-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-section {
+            margin-bottom: 4rem;
+        }
+
+        .carousel-item img {
+            height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 1rem;
+        }
+
+        .accordion-section {
+            max-width: 800px;
+            margin: 0 auto 5rem auto;
+        }
+
+        .accordion-button {
+            font-weight: 600;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(0,0,0,.125);
+        }
+        .attraction-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        /* Стили для таблицы достопримечательностей */
+        .attractions-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .attractions-table th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .attractions-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+        }
+
+        .attractions-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .attractions-table tr:hover td {
+            background-color: var(--secondary-color);
+            cursor: pointer;
+        }
+
+        .attraction-photo {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .animate-title {
+                font-size: 2.5rem;
+            }
+
+            .carousel-item img {
+                height: 300px;
+            }
+
+            .attractions-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Герой-секция с анимированным заголовком -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="animate-title animate__animated animate__fadeInDown animate__delay-1s">Откройте для себя Казань</h1>
+            <p class="lead animate__animated animate__fadeIn animate__delay-2s">Насладитесь великолепием древнего города</p>
+        </div>
+    </section>
+
+    <!-- Карусель с фотографиями -->
+    <section class="carousel-section container">
+        <div id="kazanCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#kazanCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#kazanCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#kazanCarousel" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#kazanCarousel" data-bs-slide-to="3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://avatars.mds.yandex.net/get-altay/10447847/2a0000018c43d6e39e0fec7ef4d60a9a2785/XXXL" class="d-block w-100" alt="Казанский Кремль">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Казанский Кремль</h5>
+                        <p>Сердце Казани, объект всемирного наследия ЮНЕСКО</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://avatars.dzeninfra.ru/get-zen_doc/4387796/pub_63343d44d9375940c725512f_63343df91708c90ed7790085/scale_1200" class="d-block w-100" alt="Мечеть Кул Шариф">
+                    <div class=
+"carousel-caption d-none d-md-block">
+                        <h5>Мечеть Кул Шариф</h5>
+                        <p>Главная мечеть Республики Татарстан</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://cdn.culture.ru/images/21ed8406-263d-5341-8f40-8cb1e41f4124" class="d-block w-100" alt="Улица Баумана">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Улица Баумана</h5>
+                        <p>Главная пешеходная улица Казани</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=df26d30134de15b3da23fd3b4a206424_l-5338775-images-thumbs&n=13" class="d-block w-100" alt="Дворец Земледельцев">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Дворец Земледельцев</h5>
+                        <p>Современная архитектурная доминанта города</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#kazanCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#kazanCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+    <!-- Прогрессбар под каруселью -->
+<div class="progress my-3" style="height: 8px;">
+    <div id="carouselProgressBar" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+
+
+
+    <!-- Аккордеон с достопримечательностями -->
+    <section class="accordion-section">
+        <div class="accordion" id="attractionsAccordion">
+            <div class="accordion-item mb-3 border-0 shadow-sm">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                        <i class="fas fa-landmark attraction-icon"></i> Казанский Кремль
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#attractionsAccordion">
+                    <div class="accordion-body">
+                        <p>Казанский Кремль – историко-архитектурный и культурный комплекс, объект Всемирного наследия ЮНЕСКО.</p>
+
+                        <table class="attractions-table">
+                            <thead>
+                                <tr>
+                                    <th>Место</th>
+                                    <th>Фото</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Мечеть Кул Шариф</td>
+                                    <td><img src="https://img.tourister.ru/files/2/8/9/9/3/1/8/3/clones/700_500_fixedwidth.jpg" alt="Мечеть Кул Шариф" class="attraction-photo"></td>
+                                </tr>
+                                <tr>
+                                    <td>Благовещенский Собор</td>
+                                    <td><img src="https://i.pinimg.com/736x/9c/b8/d0/9cb8d08d4f08196233fe6a2596c2909e.jpg" alt="Благовещенский Собор" class="attraction-photo"></td>
+                                </tr>
+                                <tr>
+                                    <td>Башня Сююмбике</td>
+                                    <td><img src="https://cdn.puzzlegarage.com/img/puzzle/15/9717_preview_r.v1.jpg" alt="Башня Сююмбике" class="attraction-photo"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>Кремль сочетает в себе элементы христианской и мусульманской культуры.</p>
+                        <img src="https://avatars.dzeninfra.ru/get-zen_doc/4976231/pub_6374c4e401d7f93c3ff29b8b_6374cb0c0d78fd2cff89d127/scale_1200" alt="Казанский Кремль" class="img-fluid rounded mt-3">
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item mb-3 border-0 shadow-sm">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                        <i class="fas fa-mosque attraction-icon"></i> Мечеть Кул Шариф
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#attractionsAccordion">
+                    <div class="accordion-body">
+                        <p>Мечеть Кул Шариф — главная джума-мечеть Республики Татарстан и города Казани, расположенная на территории Казанского кремля.</p>
+
+                        <table class="attractions-table">
+                            <thead>
+                                <tr>
+                                    <th>Особенности</th>
+                                    <th>Фото</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Современная архитектура</td>
+                                    <td><img src="https://cdn.culture.ru/images/295bc3f8-9b7d-5f91-8534-882413e99592" alt="Мечеть Кул Шариф" class="attraction-photo"></td>
+                                </tr>
+                                <tr>
+                                    <td>Музей исламской культуры</td>
+                                    <td><img src="https://avatars.mds.yandex.net/i?id=2057061fac2acda2c9b6171e3b2d3fce_l-5287693-images-thumbs&n=13" alt="Музей" class="attraction-photo"></td>
+                                </tr>
+                                <tr>
+                                    <td>Подсветка в ночное время</td>
+                                    <td><img src="https://avatars.dzeninfra.ru/get-zen_doc/4387796/pub_63343d44d9375940c725512f_63343df91708c90ed7790085/scale_1200" alt="Ночная подсветка" class="attraction-photo"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <img src="https://sun9-76.userapi.com/impg/kTkRwdxb8GnAydnxwKPIUjmve7MPQSpxCYvScA/d7knnwvY0d0.jpg?size=604x431&quality=96&sign=181e2e19ebc3a2e3a2b8c81769d65ba1&type=album" alt="Мечеть Кул Шариф" class="img-fluid rounded mt-3">
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item mb-3 border-0 shadow-sm">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"><i class="fas fa-street-view attraction-icon"></i> Улица Баумана
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#attractionsAccordion">
+                    <div class="accordion-body">
+                        <p>Улица Баумана — главная пешеходная улица в историческом центре Казани.</p>
+
+                        <table class="attractions-table">
+                            <thead>
+                                <tr>
+                                    <th>Объекты</th>
+                                    <th>Фото</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Национальный банк Республики Татарстан</td>
+                                    <td><img src="https://trave-l.ru/img/kazan/ulica-baumana/ulica-baumana14.jpg" alt="Национальный банк" class="attraction-photo"></td>
+                                </tr>
+                                <tr>
+                                    <td>Драматический театр им. Качалова</td>
+                                    <td><img src="https://avatars.mds.yandex.net/get-altay/1899063/2a0000016ae30e7fb579b2ad7f6a523d3ac7/XXXL" alt="Театр Качалова" class="attraction-photo"></td>
+                                </tr>
+                                <tr>
+                                    <td>Памятник Казанскому Коту</td>
+                                    <td><img src="https://avatars.mds.yandex.net/get-znatoki/1368855/2a00000181f207c1864c85043ad64b42e2c9/orig" alt="Казанский кот" class="attraction-photo"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>На улице Баумана расположены многочисленные магазины, кафе и рестораны.</p>
+                        <img src="https://kazan-kremlin.ru/wp-content/uploads/ekskursii/-2.jpg" alt="Улица Баумана" class="img-fluid rounded mt-3">
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item mb-3 border-0 shadow-sm">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                        <i class="fas fa-building attraction-icon"></i> Дворец Земледельцев
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#attractionsAccordion">
+                    <div class="accordion-body">
+                        <p>Дворец Земледельцев — здание в Казани, являющееся штаб-квартирой Министерства сельского хозяйства и продовольствия Республики Татарстан.</p>
+
+                        <table class="attractions-table">
+                            <thead>
+                                <tr>
+                                    <th>Особенности</th>
+                                    <th>Фото</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Уникальная архитектура</td>
+                                    <td><img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_670541eb92eb807fc9c15384_670542ae60479e7c51f01917/scale_1200" alt="Дворец Земледельцев" class="attraction-photo"></td>
+                                </tr>
+                                <tr>
+                                    <td>Бронзовое дерево в центре фасада</td>
+                                    <td><img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_66c58bd83ffc885e0df515d0_66c58f5c2e505303fa603440/scale_1200" alt="Бронзовое дерево" class="attraction-photo"></td>
+                                </tr>
+                                <tr>
+                                    <td>Подсветка в ночное время</td>
+                                    <td><img src="https://avatars.mds.yandex.net/get-ydo/4397410/2a0000018f1bc230935228fed03b9b23f8d5/diploma" alt="Ночная подсветка" class="attraction-photo"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>Дворец Земледельцев — современная архитектурная доминанта Казани.</p>
+                        <img src="https://totook.ru/upload/blog/pkaz3.jpg" alt="Дворец Земледельцев" class="img-fluid rounded mt-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <h3>Забронируйте тур прямо сейчас!</h3>
+            <p>+7 (843) 123-45-67 | info@kazan-tours.ru</p>
+            <p class="mb-0">© 2025 Экскурсионные туры по Казани. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const carousel = document.getElementById('kazanCarousel');
+        const progressBar = document.getElementById('carouselProgressBar');
+        const totalSlides = 4; // Всего слайдов
+        let currentIndex = 0;
+
+        carousel.addEventListener('slid.bs.carousel', function (event) {
+            // event.to - индекс нового активного слайда (0-based)
+            currentIndex = event.to;
+            let progressPercent = ((currentIndex + 1) / totalSlides) * 100;
+            progressBar.style.width = progressPercent + '%';
+            progressBar.setAttribute('aria-valuenow', progressPercent);
+        });
+    });
+</script>
+
+
+</body>
+</html>
